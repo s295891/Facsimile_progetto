@@ -1,0 +1,53 @@
+@startuml
+
+' Questo è un commento
+
+'mettermo tutto in un namespace, folder è per avere una visualizzazione diversa
+package GeometryLibrary <<Folder>>
+{
+' creo la classe, il + per dire che è pubblico
+class Triangle
+{
++ Vertices : Matrix3d
++ Triangle(Vertices)
++ double computeArea()
+
+}
+
+
+class Polygons
+{
++ Vertices : MatrixXd
++ listPolyogns: vector<vector<unsigned int>>
+
+'Per la triangolazione. v sta per vector
++ v<v<v<unsigned int>>> computeTriangulation()
+
+' metodo per calcolo area
++ vector<double> computeArea()
+
+'metodo per usare librearia vicini per paraview
++void gedimInterface(v<v<unsigned int>>&)
+..Non member function..
+void importPolygons(path, polygons)
+.. TEST POLYGONS..
+TESTCOMPUTEAREA
+TESTTRIANGULATION
+}
+}
+
+
+package Gedim <<Frame>>
+{
+}
+note "Gedim è una libreria esterna" as GedimN
+GedimN .. Gedim
+
+Gedim ..> Polygons::gedimInterface
+
+
+
+' vado a costruire una relazione tra triangoli e poligoni 1 a motli
+Triangle "many" --o "1" Polygons : "nota: is made up"
+
+@enduml
